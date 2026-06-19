@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dip's Python Program Visualizer</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --python-blue: #38bdf8;
+            --python-yellow: #facc15;
+            --accent-green: #4ade80;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            color: var(--python-blue);
+            margin-bottom: 5px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            margin-top: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .window {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            border: 1px solid #334155;
+        }
+
+        .window-header {
+            background-color: #0f172a;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #334155;
+        }
+
+        .dots {
+            display: flex;
+            gap: 6px;
+            margin-right: 15px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .dot.red { background-color: #ef4444; }
+        .dot.yellow { background-color: #eab308; }
+        .dot.green { background-color: #22c55e; }
+
+        .window-title {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: monospace;
+        }
+
+        pre {
+            margin: 0;
+            padding: 20px;
+            overflow-x: auto;
+            font-family: 'Fira Code', Consolas, Monaco, monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Code Syntax Highlighting Colors */
+        .keyword { color: #f472b6; font-weight: bold; }
+        .builtin { color: #38bdf8; }
+        .string { color: #a7f3d0; }
+        .comment { color: #64748b; font-style: italic; }
+        .function { color: #fbbf24; }
+
+        /* Terminal specific styles */
+        .terminal-body {
+            color: #e2e8f0;
+        }
+        .output-success {
+            color: var(--accent-green);
+        }
+        .btn-link {
+            display: inline-block;
+            margin-top: 15px;
+            background-color: #2563eb;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .btn-link:hover {
+            background-color: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Dip's Data Storing Program</h1>
+        <p>A visual representation of File I/O and Automation in Python</p>
+    </header>
+
+    <div class="container">
+        <div class="window">
+            <div class="window-header">
+                <div class="dots">
+                    <div class="dot red"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
+                </div>
+                <div class="window-title">main.py</div>
+            </div>
+            <pre><code><span class="keyword">import</span> webbrowser
+
+<span class="comment"># 1. Writing to a file</span>
+<span class="keyword">with</span> <span class="builtin">open</span>(<span class="string">"data.txt"</span>, <span class="string">"w"</span>) <span class="keyword">as</span> file:
+    file.<span class="function">write</span>(<span class="string">"Welcome to my profile sir.\n"</span>)
+    file.<span class="function">write</span>(<span class="string">"At here you can view my Projects.\n"</span>)
+    file.<span class="function">write</span>(<span class="string">"https://github.com/... \n"</span>)
+
+<span class="comment"># 2. Reading from a file</span>
+<span class="keyword">with</span> <span class="builtin">open</span>(<span class="string">"data.txt"</span>, <span class="string">"r"</span>) <span class="keyword">as</span> file:
+    content = file.<span class="function">read</span>()
+    <span class="builtin">print</span>(content)
+
+<span class="comment"># 3. Open to a website</span>
+<span class="builtin">print</span>(<span class="string">"\nOpening my github Profile..."</span>)
+webbrowser.<span class="function">open</span>(<span class="string">"https://github.com/..."</span>)</code></pre>
+        </div>
+
+        <div class="window">
+            <div class="window-header">
+                <div class="dots">
+                    <div class="dot red"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
+                </div>
+                <div class="window-title">Console Output</div>
+            </div>
+            <pre class="terminal-body">Welcome to my profile sir.
+At here you can view my Projects.
+https://github.com/diptarafder17-prog
+
+Opening my github Profile...
+
+<span class="output-success">✔ [System Action] Browser triggered successfully!</span>
+<a href="https://github.com/diptarafder17-prog" target="_blank" class="btn-link">Visit Dip's GitHub Profile</a></pre>
+        </div>
+    </div>
+
+</body>
+              </html>
